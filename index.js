@@ -169,9 +169,9 @@ run().catch(console.dir)
 
 
 app.get('/', (req, res) => {
-    res.send(' assignment 12 manufacturer hand tools server site start')
+    res.send(' my portfolio website is here')
   })
   
   app.listen(port, () => {
-    console.log(`assignment listening on port ${port}`)
+    console.log(`portfolio listening on port ${port}`)
   })
