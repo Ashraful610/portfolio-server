@@ -9,15 +9,15 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 app.use(express.json())
 app.use(cors())
 
-const uri = `mongodb+srv://portfolio_user:JTJXCywXcJt4GQei@cluster0.adiia.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.adiia.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
 async function run () {
     try{
         await client.connect()
         const projectsCollection = client.db('portfolio-server').collection('projects')
         
         app.get('/projects' , async (req, res) => {
+
             const query = {}
             const cursor = projectsCollection.find(query)
             const result = await cursor.toArray()
